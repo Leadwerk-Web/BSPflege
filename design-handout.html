@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BS Pflege – Design Handout &amp; UI Style Guide</title>
+  <meta name="description" content="Visuelle Dokumentation des Designsystems der BS Pflege Website – Farben, Typografie, Komponenten und Layoutprinzipien." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="icon" href="assets/img/favicon.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css?v=20260710d" />
+  <link rel="stylesheet" href="assets/css/design-handout.css?v=2" />
+</head>
+<body class="handout">
+
+<div class="doc-shell">
+  <aside class="doc-sidebar" aria-label="Inhaltsverzeichnis">
+    <a class="doc-brand" href="#intro">
+      <img src="assets/img/logo-dark.png" alt="BS Pflege" width="140" height="87" />
+    </a>
+    <p class="doc-sidebar__label">Inhalt</p>
+    <nav>
+      <ul class="doc-nav" id="docNav">
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#farben">Farben</a></li>
+        <li><a href="#typografie">Typografie</a></li>
+        <li><a href="#headlines">Headlines</a></li>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#cta">CTA-Elemente</a></li>
+        <li><a href="#navigation">Navigation</a></li>
+        <li><a href="#hero">Hero</a></li>
+        <li><a href="#layout">Grid &amp; Layout</a></li>
+        <li><a href="#cards">Karten &amp; Kacheln</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#slider">Slider</a></li>
+        <li><a href="#weitere">Weitere UI</a></li>
+        <li><a href="#zusammenfassung">Zusammenfassung</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="doc-main">
+    <header class="doc-hero" id="intro">
+      <p class="doc-hero__eyebrow">Design-Dokumentation · BS Pflege Karlsruhe</p>
+      <h1>UI Style Guide &amp; Komponenten-Handout</h1>
+      <p>
+        Dieses Handout dokumentiert das visuelle Erscheinungsbild der BS-Pflege-Website:
+        Farbkonzept, Typografie, wiederkehrende UI-Komponenten und Layoutprinzipien –
+        kuratiert für Präsentation, Abstimmung und PDF-Export.
+      </p>
+      <div class="doc-hero__meta">
+        <span>Basis: index.html</span>
+        <span>Stand: Juli 2026</span>
+        <a href="index.html">Zur Live-Website →</a>
+      </div>
+    </header>
+
+    <div class="doc-content">
+
+      <!-- 2. FARBGEBUNG -->
+      <section class="doc-section" id="farben">
+        <p class="doc-section__num">01</p>
+        <h2>Farbigkeit &amp; Farbkonzept</h2>
+        <p class="doc-section__lead">
+          Ein warmes, vertrauensvolles Farbsystem: Petrol als Markenfarbe, Mint und Korall als Akzente,
+          Beige-Töne für Wärme und Off-White für ruhige Flächen.
+        </p>
+
+        <h3 style="font-family:var(--font-head);font-size:18px;margin-bottom:16px;">Primärfarben</h3>
+        <div class="doc-grid doc-grid--4 swatches" style="margin-bottom:32px;">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#508396;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Primary</p>
+              <p class="swatch__hex">#508396</p>
+              <p class="swatch__use">Markenfarbe, Icons, Links, Buttons, Section-Labels</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#3d6a7a;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Primary Dark</p>
+              <p class="swatch__hex">#3d6a7a</p>
+              <p class="swatch__use">Button-Verläufe, Footer, dunkle Panels, Hero-Overlay</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#6a9aad;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Primary Light</p>
+              <p class="swatch__hex">#6a9aad</p>
+              <p class="swatch__use">Hover-States, sekundäre Akzente</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#e8f0f3;border-bottom:1px solid var(--doc-border);"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Primary Soft</p>
+              <p class="swatch__hex">#e8f0f3</p>
+              <p class="swatch__use">Hintergründe, Icon-Boxen, dezente Flächen</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-head);font-size:18px;margin-bottom:16px;">Akzentfarben</h3>
+        <div class="doc-grid doc-grid--4 swatches" style="margin-bottom:32px;">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#7cc9b8;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Accent Mint</p>
+              <p class="swatch__hex">#7cc9b8</p>
+              <p class="swatch__use">Button-Verlauf-Ende, Headline-Gradient, Topbar-Icons</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#f28c7a;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Accent Korall</p>
+              <p class="swatch__hex">#f28c7a</p>
+              <p class="swatch__use">Section-Label-Linie, Hero-Karte, Icon-Hover, Badges</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#af9e88;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Beige / Secondary</p>
+              <p class="swatch__hex">#af9e88</p>
+              <p class="swatch__use">Warme Akzent-Headlines, sekundäre Wärme</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#e06e58;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Accent Korall Dark</p>
+              <p class="swatch__hex">#e06e58</p>
+              <p class="swatch__use">Alternative Hero-Karte, stärkere Korall-Flächen</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-head);font-size:18px;margin-bottom:16px;">Neutrale Farben</h3>
+        <div class="doc-grid doc-grid--4 swatches">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#f3ece4;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Background</p>
+              <p class="swatch__hex">#f3ece4</p>
+              <p class="swatch__use">Seitenhintergrund, warme Basis</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#faf7f4;border-bottom:1px solid var(--doc-border);"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Off-White</p>
+              <p class="swatch__hex">#faf7f4</p>
+              <p class="swatch__use">Karten, FAQ-Section, helle Panels</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#1e2d33;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Ink</p>
+              <p class="swatch__hex">#1e2d33</p>
+              <p class="swatch__use">Fließtext, Headlines, Topbar, Footer</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#5c6d74;"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Ink Soft</p>
+              <p class="swatch__hex">#5c6d74</p>
+              <p class="swatch__use">Subheadlines, Meta-Text, Beschreibungen</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase" style="margin-top:32px;">
+          <div class="showcase__label">Button-Verlauf · CSS-Token</div>
+          <div class="showcase__body showcase-row">
+            <div style="width:280px;height:56px;border-radius:50px;background:linear-gradient(90deg,#3d6a7a 0%,#508396 42%,#7cc9b8 100%);box-shadow:0 12px 28px rgba(45,90,105,0.38);"></div>
+            <code class="doc-spec">linear-gradient(90deg, #3d6a7a → #508396 → #7cc9b8)</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. TYPOGRAFIE -->
+      <section class="doc-section" id="typografie">
+        <p class="doc-section__num">02</p>
+        <h2>Typografie</h2>
+        <p class="doc-section__lead">
+          Zwei Schriftfamilien bilden das typografische Fundament: Inter für Headlines und Labels,
+          Google Sans Flex für Fließtext und UI-Elemente.
+        </p>
+
+        <div class="doc-grid doc-grid--2" style="margin-bottom:32px;">
+          <div class="doc-card">
+            <h3>Inter · Headlines &amp; Labels</h3>
+            <p>Gewichte 400–800. Leichtes Letter-Spacing (−0.025 bis −0.03em), ruhige, moderne Anmutung.</p>
+            <span class="doc-spec">--font-head: "Inter"</span>
+          </div>
+          <div class="doc-card">
+            <h3>Google Sans Flex · Fließtext</h3>
+            <p>Variable Schrift für Body, Buttons und UI. Hohe Lesbarkeit bei großzügigem Zeilenabstand (1.8).</p>
+            <span class="doc-spec">--font-body: "Google Sans Flex"</span>
+          </div>
+        </div>
+
+        <div class="showcase">
+          <div class="showcase__label">Typografische Hierarchie · Live-Beispiele</div>
+          <div class="showcase__body">
+            <div class="type-spec">
+              <div class="type-spec__sample"><span class="type-label">Section Label</span></div>
+              <div class="type-spec__meta"><span>13px · 700 · letter-spacing 0.18em · uppercase</span></div>
+            </div>
+            <div class="type-spec">
+              <div class="type-spec__sample"><h1 style="font-size:clamp(38px,5vw,56px);font-weight:400;letter-spacing:-0.03em;">H1 · Hero Headline</h1></div>
+              <div class="type-spec__meta"><span>clamp(38px–66px) · 400 · line-height 1.1</span></div>
+            </div>
+            <div class="type-spec">
+              <div class="type-spec__sample"><h2 class="type-h2">H2 · Sektionsüberschrift</h2></div>
+              <div class="type-spec__meta"><span>clamp(32px–48px) · 400 · line-height 1.15</span></div>
+            </div>
+            <div class="type-spec">
+              <div class="type-spec__sample"><h3 class="type-h3">H3 · Karten- &amp; Modultitel</h3></div>
+              <div class="type-spec__meta"><span>20px · 700 · line-height 1.3</span></div>
+            </div>
+            <div class="type-spec">
+              <div class="type-spec__sample"><p class="type-body">Fließtext · Gute Pflege entsteht im Gespräch, im Alltag und im Vertrauen zueinander. BS Pflege verbindet fachliche Kompetenz mit Herzlichkeit.</p></div>
+              <div class="type-spec__meta"><span>16–17px · 400 · line-height 1.75–1.8 · --ink-soft</span></div>
+            </div>
+            <div class="type-spec">
+              <div class="type-spec__sample"><p class="type-lead">Lead-Text · Pflege darf sich nicht wie ein System anfühlen.</p></div>
+              <div class="type-spec__meta"><span>19px · italic · Inter · intro__lead</span></div>
+            </div>
+            <div class="type-spec">
+              <div class="type-spec__sample"><p style="font-size:13px;color:var(--ink-soft);">Meta-Text · Montag–Freitag: 09:00–16:00 Uhr</p></div>
+              <div class="type-spec__meta"><span>13px · Footer, Eyebrows, kleine Labels</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HEADLINESTRUKTUR -->
+      <section class="doc-section" id="headlines">
+        <p class="doc-section__num">03</p>
+        <h2>Headlinestruktur</h2>
+        <p class="doc-section__lead">
+          Klare Hierarchie von Hero (H1) über Sektionen (H2) bis zu Karten (H3).
+          Akzentwörter werden durch den Gradient-Klassen <code class="doc-spec">.headline-serif</code> hervorgehoben.
+        </p>
+
+        <div class="showcase">
+          <div class="showcase__label">Headline-Hierarchie &amp; Akzent-Varianten</div>
+          <div class="showcase__body showcase__body--warm">
+            <div class="section-head" style="margin-bottom:40px;">
+              <span class="section-label">Muster-Sektion</span>
+              <h2>Unsere <span class="headline-serif">Pflegeleistungen</span> in Karlsruhe</h2>
+              <p class="section-head__sub">Subheadline als erklärender Fließtext unter der H2 – zentriert, max. 680px.</p>
+            </div>
+            <div style="display:grid;gap:16px;">
+              <p><strong>H1</strong> – nur im Hero, emotional, max. 620px Breite, weiß auf Bild</p>
+              <p><strong>H2</strong> – Sektionsanker, oft mit <span class="headline-serif">Gradient-Wort</span></p>
+              <p><strong>H3</strong> – Karten, Prozess-Schritte, Footer-Spalten (700 weight)</p>
+            </div>
+            <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:20px;">
+              <span class="headline-serif" style="font-size:28px;">.headline-serif</span>
+              <span class="headline-serif headline-serif--warm" style="font-size:28px;">--warm</span>
+              <span class="headline-serif headline-serif--accent" style="font-size:28px;">--accent</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="frame" style="margin-top:24px;">
+          <img src="assets/img/leistungen-hero.jpg" alt="Visueller Kontext für Headline-Hierarchie" width="1280" height="854" loading="lazy" />
+          <p class="frame__caption">Hero-H1 auf Vollbild-Medium mit Verlauf-Overlay – stärkste typografische Stufe der Seite.</p>
+        </div>
+      </section>
+
+      <!-- 5. BUTTONS -->
+      <section class="doc-section" id="buttons">
+        <p class="doc-section__num">04</p>
+        <h2>Buttons</h2>
+        <p class="doc-section__lead">
+          Pill-förmige Buttons mit Verlauf, integriertem Pfeil-Kreis und Lift-Hover.
+          Radius 50px, fette UI-Schrift (700), klare Interaktions-Feedback-Schleife.
+        </p>
+
+        <div class="showcase">
+          <div class="showcase__label">Button-Varianten · Live-Komponenten</div>
+          <div class="showcase__body">
+            <div class="showcase-row" style="margin-bottom:28px;">
+              <a href="#" class="btn btn--primary" onclick="return false;">
+                Primary
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+              <a href="#" class="btn btn--primary btn--lg" onclick="return false;">
+                Primary Large
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+              <a href="#" class="btn btn--outline" onclick="return false;">Outline</a>
+            </div>
+            <table class="token-table">
+              <thead>
+                <tr><th>Variante</th><th>Padding</th><th>Radius</th><th>Hover</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>.btn--primary</code></td>
+                  <td>15×18 / 28px (lg: 17×20 / 32px)</td>
+                  <td>50px (Pill)</td>
+                  <td>translateY(−3px), stärkerer Schatten</td>
+                </tr>
+                <tr>
+                  <td><code>.btn--outline</code></td>
+                  <td>14×28px</td>
+                  <td>50px</td>
+                  <td>Fill Primary, Lift</td>
+                </tr>
+                <tr>
+                  <td><code>.btn--outline-light</code></td>
+                  <td>13×18 / 28px</td>
+                  <td>50px</td>
+                  <td>Transparenter Weiß-Fill auf dunklem Panel</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="showcase" style="margin-top:24px;">
+          <div class="showcase__label">Ghost-Buttons · auf dunklen Flächen (Kontakt, Accordion)</div>
+          <div class="showcase__body showcase__body--dark">
+            <div class="contact__panel" style="background:transparent;padding:0;box-shadow:none;">
+              <a href="#" class="btn btn--primary btn--lg" onclick="return false;">
+                Jetzt anrufen
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+              <a href="#" class="btn btn--outline-light btn--lg" style="margin-left:12px;" onclick="return false;">
+                Kontakt aufnehmen
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CTA -->
+      <section class="doc-section" id="cta">
+        <p class="doc-section__num">05</p>
+        <h2>CTA-Elemente</h2>
+        <p class="doc-section__lead">
+          Call-to-Actions sind durch den wiederkehrenden Primary-Button, Telefon-Link im Hero
+          und kontextuelle CTA-Bänder klar erkennbar.
+        </p>
+
+        <div class="doc-grid doc-grid--2">
+          <div class="doc-card">
+            <h3>Hero-CTA</h3>
+            <p>Primary Large + Telefon-Play-Button mit Icon-Kreis – direkter Handlungsaufruf above the fold.</p>
+          </div>
+          <div class="doc-card">
+            <h3>Sektions-CTA</h3>
+            <p>Nach Inhaltsblöcken: Button + optional Avatar-Stack (Angehörige) oder Texteinleitung (FAQ).</p>
+          </div>
+        </div>
+
+        <div class="showcase" style="margin-top:24px;">
+          <div class="showcase__label">CTA-Band · Angehörige-Section</div>
+          <div class="showcase__body showcase__body--warm">
+            <div class="relatives__cta" style="margin:0;">
+              <div class="relatives__avatars" aria-hidden="true">
+                <img src="assets/img/team.jpg" alt="" width="80" height="80" />
+                <img src="assets/img/beratung.jpg" alt="" width="80" height="80" />
+                <img src="assets/img/care-2.jpg" alt="" width="80" height="80" />
+              </div>
+              <p class="relatives__cta-text">Jetzt Kontakt aufnehmen – für eine verlässliche und persönliche Pflegeberatung</p>
+              <a href="#" class="btn btn--primary btn--lg relatives__cta-btn" onclick="return false;">
+                Beratungsgespräch vereinbaren
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="frame" style="margin-top:24px;">
+          <img src="assets/img/beratung.jpg" alt="Kontakt-Section mit CTA-Panel" width="1024" height="683" loading="lazy" style="max-height:320px;object-fit:cover;object-position:center;" />
+          <p class="frame__caption">Kontakt-Panel: Headline + Kontaktdaten + Dual-CTA (Primary Ghost + Outline Light) auf Teal-Gradient.</p>
+        </div>
+      </section>
+
+      <!-- 7. NAVIGATION -->
+      <section class="doc-section" id="navigation">
+        <p class="doc-section__num">06</p>
+        <h2>Navigation</h2>
+        <p class="doc-section__lead">
+          Overlay-Header im Hero, sticky nach Scroll mit Logo-Switch (weiß → dunkel).
+          Desktop: horizontale Links + Primary-CTA. Mobile: Vollbild-Drawer.
+        </p>
+
+        <div class="showcase">
+          <div class="showcase__label">Desktop-Navigation · vereinfachte Reproduktion</div>
+          <div class="showcase__body">
+            <div class="spec-nav">
+              <img src="assets/img/logo-dark.png" alt="Logo" />
+              <ul class="nav__list">
+                <li><a href="#" class="nav__link" onclick="return false;">Home</a></li>
+                <li><a href="#" class="nav__link" onclick="return false;">Leistungen</a></li>
+                <li><a href="#" class="nav__link" onclick="return false;">Team</a></li>
+                <li><a href="#" class="nav__link" onclick="return false;">FAQ</a></li>
+                <li><a href="#" class="nav__link" onclick="return false;">Kontakt</a></li>
+              </ul>
+              <a href="#" class="btn btn--primary nav__cta" style="padding:12px 14px 12px 22px;font-size:14px;" onclick="return false;">
+                Beratung anfragen
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-grid doc-grid--3" style="margin-top:24px;">
+          <div class="doc-card">
+            <h3>Sticky-Verhalten</h3>
+            <p>Nach Hero-Scroll: fester Header mit weißem Hintergrund, Schatten und dunklem Logo.</p>
+          </div>
+          <div class="doc-card">
+            <h3>Mobile Menü</h3>
+            <p>Hamburger → Vollbild-Nav mit Close-Button, Overlay und großzügigen Tap-Targets.</p>
+          </div>
+          <div class="doc-card">
+            <h3>Scroll-Spy</h3>
+            <p>Aktive Sektion wird in der Navigation hervorgehoben (JS in main.js).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. HERO -->
+      <section class="doc-section" id="hero">
+        <p class="doc-section__num">07</p>
+        <h2>Hero-Section</h2>
+        <p class="doc-section__lead">
+          Vollbild-Slider mit 5 Bildern, Teal-Overlay, zentrale Headline links unten,
+          schwebende Feature-Karten am unteren Rand.
+        </p>
+
+        <div class="doc-grid doc-grid--2">
+          <div class="frame">
+            <img src="assets/img/pflege-1.jpg" alt="Hero-Hintergrundbild" width="1280" height="854" loading="lazy" />
+            <p class="frame__caption">Medien-Slider · Ken-Burns-Zoom auf aktivem Slide</p>
+          </div>
+          <div class="doc-card">
+            <h3>Aufbau</h3>
+            <ul>
+              <li><strong>Eyebrow</strong> – kleine Label-Zeile mit Mint-Punkt</li>
+              <li><strong>H1</strong> – emotional, mit Gradient-Akzentwort</li>
+              <li><strong>Subheadline</strong> – erklärender Text, rgba-Weiß</li>
+              <li><strong>Actions</strong> – Primary + Telefon-Link</li>
+              <li><strong>Hero-Cards</strong> – 2 Kacheln in Korall-Tönen mit Icon &amp; Lift-Hover</li>
+            </ul>
+            <span class="doc-spec">min-height ~92vh · overlay gradient</span>
+          </div>
+        </div>
+
+        <div class="showcase" style="margin-top:24px;">
+          <div class="showcase__label">Hero Feature-Karten</div>
+          <div class="showcase__body showcase__body--flush">
+            <div class="hero__cards-inner" style="position:static;transform:none;max-width:100%;border-radius:var(--radius);overflow:hidden;">
+              <article class="hero__card">
+                <span class="hero__card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                <h3>Individuelle Pflege</h3>
+                <p>Lösungen, die zu Ihrem Leben passen.</p>
+              </article>
+              <article class="hero__card hero__card--alt">
+                <span class="hero__card-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                <h3>Alles aus einer Hand</h3>
+                <p>Von mobiler Pflege bis 24h-Betreuung.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. GRID / LAYOUT -->
+      <section class="doc-section" id="layout">
+        <p class="doc-section__num">08</p>
+        <h2>Grid &amp; Layoutsystem</h2>
+        <p class="doc-section__lead">
+          Ein konsistentes 1280px-Container-System mit großzügigen Section-Paddings,
+          2-Spalten-Grids für Bild-Text-Module und zentrierten Section-Headers.
+        </p>
+
+        <table class="token-table" style="background:var(--doc-surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--doc-border);">
+          <thead>
+            <tr><th>Token</th><th>Wert</th><th>Einsatz</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--container</code></td><td>1280px</td><td>Max. Inhaltsbreite, zentriert</td></tr>
+            <tr><td><code>.container padding</code></td><td>0 28px</td><td>Seitenabstand Mobile/Desktop</td></tr>
+            <tr><td><code>Section-Padding</code></td><td>~100–120px vertikal</td><td>Atmender Rhythmus zwischen Blöcken</td></tr>
+            <tr><td><code>--radius-sm → xl</code></td><td>12 / 20 / 28 / 40px</td><td>Karten, Panels, große Module</td></tr>
+            <tr><td><code>Grid 50/50</code></td><td>intro, about, career, faq, contact</td><td>Bild-Text-Zweispaltigkeit</td></tr>
+            <tr><td><code>Grid 3-col</code></td><td>process, why-cards</td><td>Feature- und Prozess-Kacheln</td></tr>
+          </tbody>
+        </table>
+
+        <div class="showcase" style="margin-top:24px;">
+          <div class="showcase__label">Section-Header · zentrierte Ausrichtung</div>
+          <div class="showcase__body showcase__body--warm">
+            <div class="section-head" style="margin-bottom:0;">
+              <span class="section-label">Layout-Muster</span>
+              <h2>Max. 680px <span class="headline-serif">zentriert</span></h2>
+              <p class="section-head__sub">Section-Heads sind immer mittig ausgerichtet – Label, H2 und Subtext bilden eine klare Einheit.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. CARDS -->
+      <section class="doc-section" id="cards">
+        <p class="doc-section__num">09</p>
+        <h2>Kachelelemente &amp; Cards</h2>
+        <p class="doc-section__lead">
+          Glassmorphismus-Karten mit Lift-Hover, einheitliche Icon-Kreise und abgestufte Varianten
+          für Prozess, Vorteile, Hero und Accordion.
+        </p>
+
+        <div class="showcase">
+          <div class="showcase__label">Prozess-Karten · Angehörige (01–03)</div>
+          <div class="showcase__body showcase__body--warm">
+            <div class="spec-process">
+              <article class="process__card">
+                <div class="process__top"><span class="process__num">01</span><span class="process__line"></span></div>
+                <h3>Situation schildern</h3>
+                <p>Erzählen Sie uns, was gerade gebraucht wird – ganz in Ruhe.</p>
+              </article>
+              <article class="process__card">
+                <div class="process__top"><span class="process__num">02</span><span class="process__line"></span></div>
+                <h3>Persönlich beraten</h3>
+                <p>Wir zeigen verständlich, welche Möglichkeiten es gibt.</p>
+              </article>
+              <article class="process__card">
+                <div class="process__top"><span class="process__num">03</span><span class="process__line"></span></div>
+                <h3>Passende Lösung</h3>
+                <p>Gemeinsam finden wir die Unterstützung, die wirklich passt.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase" style="margin-top:24px;">
+          <div class="showcase__label">Vorteils-Karten · Glass auf Teal-Panel</div>
+          <div class="showcase__body showcase__body--flush">
+            <div class="spec-why-panel">
+              <div class="why__grid">
+                <article class="why-card">
+                  <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+                  <h3>Individuelle Pflegeplanung</h3>
+                  <p>Jeder Plan entsteht gemeinsam mit Ihnen.</p>
+                </article>
+                <article class="why-card">
+                  <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                  <h3>Menschlichkeit</h3>
+                  <p>Der Mensch zählt, nicht die Nummer.</p>
+                </article>
+                <article class="why-card">
+                  <span class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                  <h3>Erfahrenes Team</h3>
+                  <p>Fachlich stark und mit echtem Herz.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-grid doc-grid--2" style="margin-top:24px;">
+          <div class="doc-card">
+            <h3>Hover-Verhalten</h3>
+            <p>Lift <code>translateY(−6px)</code>, stärkerer Schatten, Icon-Kreis wechselt zu Korall.</p>
+          </div>
+          <div class="doc-card">
+            <h3>Leistungs-Accordion</h3>
+            <p>Bild-Panels mit Expand-Animation – horizontales Accordion mit Nummer, Text und Ghost-CTA.</p>
+          </div>
+        </div>
+
+        <div class="frame" style="margin-top:24px;">
+          <img src="assets/img/care-hands.jpg" alt="Leistungs-Accordion mit Bildpanel" width="1024" height="683" loading="lazy" style="max-height:280px;object-fit:cover;" />
+          <p class="frame__caption">Accordion-Panels: Vollflächiges Bild, Overlay, expandierbarer Content-Bereich.</p>
+        </div>
+      </section>
+
+      <!-- 11. FAQ -->
+      <section class="doc-section" id="faq">
+        <p class="doc-section__num">10</p>
+        <h2>FAQ · Accordion</h2>
+        <p class="doc-section__lead">
+          Weiße Sektion mit 2-Spalten-Layout: Bild + Korall-Badge links, Accordion-Liste rechts.
+          Plus-Icon rotiert bei Öffnung, sanfte Panel-Animation.
+        </p>
+
+        <div class="frame frame--native" style="margin-top:24px;">
+          <img src="assets/img/faq-handout.png" alt="FAQ-Section: Bild links mit Korall-Badge, Accordion-Liste rechts mit fünf Fragen und CTA-Button" width="1024" height="599" loading="lazy" />
+          <p class="frame__caption">FAQ · Live-Ausschnitt aus der Website: 2-Spalten-Layout mit Beratungsbild und Korall-Badge links, Glass-Accordion mit Plus-Toggle rechts, Abschluss-CTA darunter.</p>
+        </div>
+      </section>
+
+      <!-- 12. SLIDER -->
+      <section class="doc-section" id="slider">
+        <p class="doc-section__num">11</p>
+        <h2>Slider &amp; Carousel</h2>
+        <p class="doc-section__lead">
+          Zwei Slider-Typen: Hero-Bildrotation (automatisch, Crossfade) und Testimonial-Slider
+          mit Dot-Navigation und Zitat-Typografie.
+        </p>
+
+        <div class="doc-grid doc-grid--2">
+          <div class="doc-card">
+            <h3>Hero-Slider</h3>
+            <p>5 Slides, opacity-Transition, Ken-Burns auf aktivem Bild. Keine sichtbaren Controls – atmosphärisch.</p>
+            <span class="doc-spec">#heroSlider · 6s Intervall</span>
+          </div>
+          <div class="doc-card">
+            <h3>Testimonial-Slider</h3>
+            <p>Sterne, großes Anführungszeichen, Autor-Avatar, Dot-Pagination unten rechts.</p>
+            <span class="doc-spec">#testiSlider · 3 Slides</span>
+          </div>
+        </div>
+
+        <div class="frame frame--native" style="margin-top:24px;">
+          <img src="assets/img/testimonial-slide-handout.png" alt="Testimonial-Slider: Bild links mit Korall-Badge, Zitat-Slider rechts mit Sternen, Autor und Dot-Navigation" width="1024" height="471" loading="lazy" />
+          <p class="frame__caption">Testimonial-Slide · Screenshot aus der Live-Website: Bild links mit Korall-Badge (60% Spaltenbreite), Slider rechts mit Sternen, Zitat, Autor-Avatar und Dot-Pagination.</p>
+        </div>
+      </section>
+
+      <!-- 13. WEITERE UI -->
+      <section class="doc-section" id="weitere">
+        <p class="doc-section__num">12</p>
+        <h2>Weitere UI-Komponenten</h2>
+        <p class="doc-section__lead">
+          Ergänzende Bausteine für Vertrauen, Orientierung und Barrierefreiheit.
+        </p>
+
+        <div class="doc-grid doc-grid--2">
+          <div class="showcase">
+            <div class="showcase__label">Section Label + Check-Liste</div>
+            <div class="showcase__body showcase__body--warm">
+              <span class="section-label">Über BS Pflege</span>
+              <div class="about__checks">
+                <div class="about__check">
+                  <span class="about__check-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  Individuelle Pflegeplanung
+                </div>
+                <div class="about__check">
+                  <span class="about__check-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+                  Persönliche Ansprechpartner
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase">
+            <div class="showcase__label">Karriere-Tags · Badges</div>
+            <div class="showcase__body">
+              <ul class="career__tags">
+                <li>Flexible Arbeitszeiten</li>
+                <li>Wertschätzendes Miteinander</li>
+                <li>Quereinstieg möglich</li>
+                <li>Faire Bezahlung</li>
+              </ul>
+            </div>
+          </div>
+          <div class="showcase">
+            <div class="showcase__label">Icon-Boxen</div>
+            <div class="showcase__body showcase-row">
+              <span class="icon icon-box"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              <span class="icon icon-box icon-box--mint"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+              <span class="icon icon-box icon-box--coral"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            </div>
+          </div>
+          <div class="showcase">
+            <div class="showcase__label">Bild-Collage · Intro/Karriere</div>
+            <div class="showcase__body showcase__body--warm">
+              <div class="intro__collage" style="max-width:420px;">
+                <div class="intro__collage-img intro__collage-img--tall">
+                  <img src="assets/img/pflege-1.jpg" alt="" width="400" height="500" />
+                </div>
+                <div class="intro__collage-stack">
+                  <div class="intro__collage-img intro__collage-img--top">
+                    <img src="assets/img/care-2.jpg" alt="" width="300" height="200" />
+                  </div>
+                  <div class="intro__collage-img intro__collage-img--bottom">
+                    <img src="assets/img/beratung.jpg" alt="" width="300" height="200" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="frame frame--native" style="margin-top:24px;">
+          <img src="assets/img/a11y-widget-handout.png" alt="Barrierefreiheits-Widget: Toggle-Button links, Panel mit Schriftgröße, Kontrast, Links unterstreichen, Animationen reduzieren und Zeilenabstand" width="364" height="513" loading="lazy" />
+          <p class="frame__caption">Barrierefreiheits-Widget · Live-Ausschnitt aus der Website: Fixiert links, öffnet Panel mit Schriftgröße (A− bis A++), Hoher Kontrast, Links unterstreichen, Animationen reduzieren, Zeilenabstand und Reset.</p>
+        </div>
+      </section>
+
+      <!-- 14. ZUSAMMENFASSUNG -->
+      <section class="doc-section" id="zusammenfassung">
+        <p class="doc-section__num">13</p>
+        <h2>Designcharakter &amp; Zusammenfassung</h2>
+        <p class="doc-section__lead">
+          Das BS-Pflege-Design verbindet medizinische Seriosität mit menschlicher Wärme –
+          ein konsistentes System für Vertrauen und Nähe.
+        </p>
+
+        <div class="doc-summary">
+          <h3>Gestalterische Prinzipien</h3>
+          <ul>
+            <li><strong>Warm &amp; vertrauensvoll</strong> – Beige-Hintergründe, weiche Radien, organische Bildsprache</li>
+            <li><strong>Premium Healthcare</strong> – Teal/Mint-Palette signalisiert Kompetenz ohne Kälte</li>
+            <li><strong>Klarheit &amp; Hierarchie</strong> – Section-Labels, zentrierte Heads, einheitliche CTAs</li>
+            <li><strong>Mensch im Fokus</strong> – Authentische Fotografie, Testimonials, persönliche Ansprache</li>
+            <li><strong>Interaktive Tiefe</strong> – Lift-Hover, Glass-Karten, sanfte Animationen und Slider</li>
+            <li><strong>Barrierefreiheit</strong> – Dediziertes A11y-Widget, Skip-Link, semantisches HTML</li>
+          </ul>
+        </div>
+
+        <div class="doc-grid doc-grid--3" style="margin-top:32px;">
+          <div class="doc-card">
+            <h3>Stärken</h3>
+            <p>Wiedererkennbare Buttons, konsistente Icon-Kreise, durchgängiges 1280px-Layout.</p>
+          </div>
+          <div class="doc-card">
+            <h3>Wirkung</h3>
+            <p>Professionell und einladend zugleich – ideal für Pflege &amp; Vertrauensbranche.</p>
+          </div>
+          <div class="doc-card">
+            <h3>Einsatz</h3>
+            <p>Geeignet als Referenz für Erweiterungen, Landingpages und Print/PDF-Präsentationen.</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /.doc-content -->
+
+    <footer class="doc-footer">
+      <span>BS Pflege · Design Handout · Erstellt aus index.html</span>
+      <span><a href="index.html">Live-Website</a> · Drucken: Strg+P / ⌘P</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var links = document.querySelectorAll(".doc-nav a");
+  var sections = [];
+  links.forEach(function (a) {
+    var id = a.getAttribute("href").slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ link: a, el: el });
+  });
+  function onScroll() {
+    var y = window.scrollY + 120;
+    var current = sections[0];
+    sections.forEach(function (s) {
+      if (s.el.offsetTop <= y) current = s;
+    });
+    links.forEach(function (a) { a.classList.remove("is-active"); });
+    if (current) current.link.classList.add("is-active");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>

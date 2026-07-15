@@ -26,8 +26,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/style.css?v=20260708h" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260710d" />
   <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+  <script>
+  (function () {
+    try {
+      var s = JSON.parse(localStorage.getItem("bs-a11y") || "{}");
+      var root = document.documentElement;
+      var scales = { sm: 0.875, lg: 1.125, xl: 1.25 };
+      if (s.font && s.font !== "normal" && scales[s.font]) {
+        root.setAttribute("data-a11y-font", s.font);
+        root.style.zoom = scales[s.font];
+      }
+      if (s.contrast) root.classList.add("a11y-contrast");
+      if (s.underline) root.classList.add("a11y-underline-links");
+      if (s.motion) root.classList.add("a11y-reduced-motion");
+      if (s.lineHeight) root.classList.add("a11y-line-height");
+    } catch (e) {}
+  })();
+  </script>
 
   <script type="application/ld+json">
   {
@@ -161,7 +178,7 @@
       <div class="container hero__body">
         <div class="hero__content reveal">
           <span class="hero__eyebrow">Ambulanter Pflegedienst in Karlsruhe</span>
-          <h1 class="hero__title">Menschlichkeit ist kein Ziel –<br />sie ist unsere <span class="headline-serif headline-serif--hero">Haltung</span>.</h1>
+          <h1 class="hero__title">Menschlichkeit ist kein Ziel –<br />sie ist unsere <span class="headline-serif">Haltung</span>.</h1>
           <p class="hero__sub">
             BS Ambulanter Pflegedienst begleitet Menschen und ihre Angehörigen in Karlsruhe
             mit individueller Pflege, persönlicher Betreuung und echter Zuwendung –
@@ -743,7 +760,7 @@
         <div class="contact__wrap reveal">
           <div class="contact__panel">
             <span class="section-label">Kontakt</span>
-            <h2>Lassen Sie uns gemeinsam herausfinden, <span class="headline-serif headline-serif--light">welche Unterstützung passt.</span></h2>
+            <h2>Lassen Sie uns gemeinsam herausfinden, <span class="headline-serif">welche Unterstützung passt.</span></h2>
             <p>
               Sie haben Fragen zur Pflege, zu einer Wohngemeinschaft oder zur Entlastung Ihrer
               Angehörigen? Wir nehmen uns Zeit für ein persönliches Gespräch.
@@ -833,6 +850,50 @@
   </a>
 
   <div class="nav-overlay" id="navOverlay" hidden></div>
-  <script src="assets/js/main.js?v=20260708e" defer></script>
+
+  <!-- Barrierefreiheit -->
+  <aside class="a11y" id="a11yWidget" aria-label="Barrierefreiheit">
+    <button class="a11y__toggle" id="a11yToggle" type="button" aria-expanded="false" aria-controls="a11yPanel" aria-label="Barrierefreiheit öffnen">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M12 6v6M8 20l4-6 4 6M6 14h12"/></svg>
+    </button>
+    <div class="a11y__panel" id="a11yPanel" hidden>
+      <div class="a11y__head">
+        <h2 class="a11y__title" id="a11yTitle">Barrierefreiheit</h2>
+        <button class="a11y__close" id="a11yClose" type="button" aria-label="Barrierefreiheit schließen">&times;</button>
+      </div>
+      <div class="a11y__body">
+        <div class="a11y__group">
+          <span class="a11y__label" id="a11yFontLabel">Schriftgröße</span>
+          <div class="a11y__font-btns" role="group" aria-labelledby="a11yFontLabel">
+            <button class="a11y__font-btn" type="button" data-a11y-font="sm" aria-pressed="false" aria-label="Kleinere Schrift">A−</button>
+            <button class="a11y__font-btn is-active" type="button" data-a11y-font="normal" aria-pressed="true" aria-label="Normale Schrift">A</button>
+            <button class="a11y__font-btn" type="button" data-a11y-font="lg" aria-pressed="false" aria-label="Größere Schrift">A+</button>
+            <button class="a11y__font-btn" type="button" data-a11y-font="xl" aria-pressed="false" aria-label="Sehr große Schrift">A++</button>
+          </div>
+        </div>
+        <div class="a11y__group">
+          <button class="a11y__option" type="button" id="a11yContrast" aria-pressed="false">
+            <span class="a11y__option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg></span>
+            <span>Hoher Kontrast</span>
+          </button>
+          <button class="a11y__option" type="button" id="a11yUnderline" aria-pressed="false">
+            <span class="a11y__option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20h12M8 6v6a4 4 0 0 0 8 0V6"/></svg></span>
+            <span>Links unterstreichen</span>
+          </button>
+          <button class="a11y__option" type="button" id="a11yMotion" aria-pressed="false">
+            <span class="a11y__option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 9l-5 3 5 3V9zM14 9l5 3-5 3V9z"/></svg></span>
+            <span>Animationen reduzieren</span>
+          </button>
+          <button class="a11y__option" type="button" id="a11yLineHeight" aria-pressed="false">
+            <span class="a11y__option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+            <span>Zeilenabstand vergrößern</span>
+          </button>
+        </div>
+        <button class="a11y__reset" type="button" id="a11yReset">Einstellungen zurücksetzen</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="assets/js/main.js?v=20260710b" defer></script>
 </body>
 </html>
