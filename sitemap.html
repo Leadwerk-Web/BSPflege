@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sitemap Website Relaunch · BS Pflege</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="assets/img/favicon.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Google+Sans+Flex:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --home: #508396;
+    --home-deep: #3d6a7a;
+    --fill: #e8f0f3;
+    --fill-soft: #faf7f4;
+    --border: #c5d6de;
+    --border-strong: #a8c0cb;
+    --ink: #1e2d33;
+    --muted: #5c6d74;
+    --line: #c5d6de;
+    --white: #FFFFFF;
+    --phase-badge: #f28c7a;
+    --page-bg: #f3ece4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Google Sans Flex", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--page-bg);
+    line-height: 1.35;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 3rem;
+  }
+
+  /* Title */
+  .doc-title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .doc-title img {
+    height: 64px;
+    width: auto;
+    margin-bottom: 0.85rem;
+    display: inline-block;
+  }
+
+  .doc-title h1 {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .doc-title p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .note {
+    max-width: 820px;
+    margin: -0.5rem auto 2rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .note strong { color: var(--ink); font-weight: 600; }
+
+  /* Nodes */
+  .box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: var(--fill);
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .box svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  .box--home {
+    background: linear-gradient(90deg, var(--home-deep) 0%, var(--home) 55%, #7cc9b8 100%);
+    border-color: var(--home);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.7rem 1.4rem;
+    border-radius: 50px;
+  }
+
+  .box--home svg { stroke: #fff; }
+
+  .box--main {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-height: 4.35rem;
+    padding: 0.6rem 0.4rem 0.55rem;
+    font-size: 0.7rem;
+    background: var(--fill);
+    border-color: var(--border);
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .box--main svg {
+    width: 18px;
+    height: 18px;
+    color: var(--home);
+  }
+
+  .box--sub {
+    width: 100%;
+    display: block;
+    background: var(--white);
+    border-color: var(--border-strong);
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 0.45rem 0.5rem;
+    line-height: 1.25;
+    position: relative;
+  }
+
+  .box--phase {
+    border-style: dashed;
+    border-color: var(--border-strong);
+    background: var(--fill-soft);
+    color: var(--muted);
+  }
+
+  .badge {
+    display: inline-block;
+    margin-top: 0.3rem;
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+    background: var(--phase-badge);
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .badge--new {
+    background: #7cc9b8;
+  }
+
+  /* Tree layout */
+  .tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stem {
+    width: 1.5px;
+    height: 28px;
+    background: var(--line);
+  }
+
+  .rail-wrap {
+    position: relative;
+    width: min(100%, 1160px);
+  }
+
+  .rail {
+    position: absolute;
+    left: calc(100% / 12);
+    right: calc(100% / 12);
+    top: 0;
+    height: 1.5px;
+    background: var(--line);
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 1160px;
+    align-items: start;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .col .stem { height: 20px; }
+
+  .subs {
+    list-style: none;
+    width: 100%;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  /* Bottom row: Legend | Footer */
+  .bottom {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 1.25rem 2rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .panel-title {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .legend-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.78rem;
+    color: var(--ink);
+  }
+
+  .swatch {
+    width: 2.5rem;
+    height: 1.15rem;
+    border-radius: 5px;
+    border: 1.5px solid var(--border);
+    background: var(--fill);
+    flex-shrink: 0;
+  }
+
+  .swatch--home {
+    background: linear-gradient(90deg, var(--home-deep), var(--home));
+    border-color: var(--home);
+  }
+
+  .swatch--sub {
+    background: var(--white);
+    border-color: var(--border-strong);
+  }
+
+  .swatch--phase {
+    background: var(--fill-soft);
+    border-style: dashed;
+    border-color: var(--border-strong);
+  }
+
+  .footer-block .panel-title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 0.9rem;
+  }
+
+  .footer-block .panel-title::before,
+  .footer-block .panel-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 18%;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .footer-block .panel-title::before { left: 0; }
+  .footer-block .panel-title::after { right: 0; }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+
+  .footer-nav .box {
+    width: 100%;
+    font-size: 0.72rem;
+    padding: 0.5rem 0.45rem;
+    background: var(--fill);
+  }
+
+  .doc-foot {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .doc-foot a {
+    color: var(--home);
+    font-weight: 600;
+  }
+
+  @media (max-width: 1100px) {
+    .cols {
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 1.5rem;
+    }
+    .rail { display: none; }
+  }
+
+  @media (max-width: 720px) {
+    .cols { grid-template-columns: 1fr 1fr; }
+    .bottom { grid-template-columns: 1fr; }
+    .footer-block .panel-title::before,
+    .footer-block .panel-title::after { width: 12%; }
+    .box--main { min-height: auto; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0.5cm; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="doc-title">
+      <img src="assets/img/logo-dark.png" alt="BS Pflege" width="140" height="87" />
+      <h1>Sitemap Website Relaunch</h1>
+      <p>BS Ambulanter Pflegedienst Karlsruhe</p>
+    </header>
+
+    <p class="note">
+      <strong>Hinweis:</strong> Navigation laut Kundenfeedback.
+      Die Startseite bleibt künftig schlank (Teaser &amp; Einstieg);
+      Inhaltsthemen wandern auf <strong>eigene Unterseiten</strong>.
+      Gestrichelte Knoten = später / Phase&nbsp;2.
+    </p>
+
+    <div class="tree" aria-label="Sitemap">
+      <div class="box box--home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        Startseite
+      </div>
+
+      <div class="stem" aria-hidden="true"></div>
+
+      <div class="rail-wrap" aria-hidden="true">
+        <div class="rail"></div>
+      </div>
+
+      <div class="cols">
+        <!-- 1 Ambulante Leistungen -->
+        <div class="col">
+          <div class="stem" aria-hidden="true"></div>
+          <div class="box box--main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            Ambulante Leistungen
+          </div>
+          <div class="stem" aria-hidden="true"></div>
+          <ul class="subs">
+            <li class="box box--sub">Mobile Pflege &amp; Betreuung</li>
+            <li class="box box--sub">Kurzzeit- &amp; Verhinderungspflege</li>
+            <li class="box box--sub">24h-Pflege zu Hause</li>
+            <li class="box box--sub box--phase">Tagespflege Mühlburg<br /><span class="badge">Phase 2</span></li>
+          </ul>
+        </div>
+
+        <!-- 2 Pflegewohngemeinschaften -->
+        <div class="col">
+          <div class="stem" aria-hidden="true"></div>
+          <div class="box box--main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Pflegewohngemeinschaften
+          </div>
+          <div class="stem" aria-hidden="true"></div>
+          <ul class="subs">
+            <li class="box box--sub">Konzept &amp; Alltag</li>
+            <li class="box box--sub">Standorte / WGs</li>
+            <li class="box box--sub">Aufnahme &amp; Beratung</li>
+          </ul>
+        </div>
+
+        <!-- 3 Unser Team -->
+        <div class="col">
+          <div class="stem" aria-hidden="true"></div>
+          <div class="box box--main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M3 20v-1a5 5 0 0 1 10 0v1"/><path d="M13 20v-1a4 4 0 0 1 8 0v1"/></svg>
+            Unser Team
+          </div>
+          <div class="stem" aria-hidden="true"></div>
+          <ul class="subs">
+            <li class="box box--sub">Über BS Pflege</li>
+            <li class="box box--sub">Team &amp; Ansprechpartner</li>
+            <li class="box box--sub">Werte &amp; Haltung</li>
+          </ul>
+        </div>
+
+        <!-- 4 Stellenanzeigen -->
+        <div class="col">
+          <div class="stem" aria-hidden="true"></div>
+          <div class="box box--main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12v4M10 14h4"/></svg>
+            Stellenanzeigen
+          </div>
+          <div class="stem" aria-hidden="true"></div>
+          <ul class="subs">
+            <li class="box box--sub">Stellenübersicht</li>
+            <li class="box box--sub">Pflegefachkraft</li>
+            <li class="box box--sub">Präsenzkraft / Hauswirtschaft</li>
+            <li class="box box--sub">Initiativbewerbung</li>
+          </ul>
+        </div>
+
+        <!-- 5 FAQ -->
+        <div class="col">
+          <div class="stem" aria-hidden="true"></div>
+          <div class="box box--main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+            FAQ
+          </div>
+          <div class="stem" aria-hidden="true"></div>
+          <ul class="subs">
+            <li class="box box--sub">Häufige Fragen<br /><span class="badge badge--new">Neu</span></li>
+            <li class="box box--sub">Pflegegrade &amp; Kosten</li>
+            <li class="box box--sub">Organisation &amp; Alltag</li>
+          </ul>
+        </div>
+
+        <!-- 6 Kontakt -->
+        <div class="col">
+          <div class="stem" aria-hidden="true"></div>
+          <div class="box box--main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Kontakt
+          </div>
+          <div class="stem" aria-hidden="true"></div>
+          <ul class="subs">
+            <li class="box box--sub">Kontakt &amp; Beratung</li>
+            <li class="box box--sub">Formular / Anruf</li>
+            <li class="box box--sub box--phase">Anfahrt &amp; Öffnungszeiten<br /><span class="badge">Optional</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div>
+        <h2 class="panel-title">Legende</h2>
+        <div class="legend-list">
+          <div class="legend-item"><span class="swatch swatch--home" aria-hidden="true"></span> Hauptseite / Startseite</div>
+          <div class="legend-item"><span class="swatch" aria-hidden="true"></span> Hauptnavigation (Menüpunkt)</div>
+          <div class="legend-item"><span class="swatch swatch--sub" aria-hidden="true"></span> Unterseite / Inhaltsknoten</div>
+          <div class="legend-item"><span class="swatch swatch--phase" aria-hidden="true"></span> Später / Phase 2</div>
+          <div class="legend-item">
+            <span class="badge badge--new" style="margin:0;">Neu</span>
+            <span style="margin-left:0.35rem;">Inhaltsanpassung aus Feedback → eigene Unterseite</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-block">
+        <h2 class="panel-title">Footer / Service-Navigation</h2>
+        <div class="footer-nav">
+          <span class="box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h9l3 3v13H6z"/><path d="M9 12h6M9 16h6M9 8h3"/></svg>
+            Impressum
+          </span>
+          <span class="box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Datenschutz
+          </span>
+          <span class="box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Kontakt
+          </span>
+          <span class="box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            Stellenanzeigen
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <p class="doc-foot">
+      Abstimmungsdokument · Mehrseiten-Struktur ·
+      <a href="index.html">Aktueller One-Pager</a>
+      ·
+      <a href="design-handout.html">Design-Handout</a>
+    </p>
+  </div>
+</body>
+</html>

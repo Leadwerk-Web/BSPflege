@@ -12,6 +12,7 @@
 
   /* ---- Sticky header state ---- */
   function onScroll() {
+    if (!header) return;
     if (window.scrollY > 40) {
       header.classList.add("scrolled");
     } else {
@@ -21,7 +22,7 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---- Mobile navigation ---- */
+  /* ---- Mobile / kompakte Navigation ---- */
   function openNav() {
     nav.classList.add("open");
     overlay.hidden = false;
@@ -45,6 +46,43 @@
       if (nav.classList.contains("open")) closeNav();
     });
   });
+
+  /* Desktop-Nav nur einzeilig; sonst Burger */
+  var navList = nav ? nav.querySelector(".nav__list") : null;
+  var navModeTimer;
+
+  function updateNavMode() {
+    if (!header || !nav || !navList) return;
+    var wasOpen = nav.classList.contains("open");
+    header.classList.remove("nav-compact");
+    if (wasOpen) closeNav();
+
+    /* erzwingen: Layout messen im Desktop-Zustand */
+    void navList.offsetWidth;
+
+    var overflows = navList.scrollWidth > navList.clientWidth + 2;
+    var wraps = false;
+    navList.querySelectorAll(".nav__link").forEach(function (link) {
+      if (link.scrollHeight > link.clientHeight + 2) wraps = true;
+    });
+
+    if (overflows || wraps || window.innerWidth <= 960) {
+      header.classList.add("nav-compact");
+    }
+  }
+
+  function scheduleNavMode() {
+    clearTimeout(navModeTimer);
+    navModeTimer = setTimeout(updateNavMode, 80);
+  }
+
+  window.addEventListener("resize", scheduleNavMode);
+  window.addEventListener("load", updateNavMode);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updateNavMode).catch(function () {});
+  }
+  updateNavMode();
+  requestAnimationFrame(updateNavMode);
 
   /* ---- Hero-Hintergrund-Slider ---- */
   var heroSlider = document.getElementById("heroSlider");
@@ -131,25 +169,50 @@
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });
   }
 
-  /* ---- Active nav link via scroll spy ---- */
-  var sections = ["leistungen", "team", "karriere", "faq", "kontakt"]
+  /* ---- Active nav link via scroll spy (nur Anker auf derselben Seite) ---- */
+  var sections = ["pflegewohngemeinschaften", "team", "karriere", "faq", "kontakt"]
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   var navLinks = document.querySelectorAll(".nav__link");
 
   function setActive() {
+    if (!sections.length) return;
     var pos = window.scrollY + 140;
-    var current = "top";
+    var current = "";
     sections.forEach(function (sec) {
       if (sec.offsetTop <= pos) current = sec.id;
     });
     navLinks.forEach(function (link) {
+      if (link.getAttribute("aria-current") === "page") return;
       var href = link.getAttribute("href") || "";
-      link.classList.toggle("active", href === "#" + current);
+      var hashIdx = href.indexOf("#");
+      if (hashIdx === -1) return;
+      var hash = href.slice(hashIdx + 1);
+      if (!hash) return;
+      link.classList.toggle("active", hash === current);
     });
   }
   window.addEventListener("scroll", setActive, { passive: true });
   setActive();
+
+  /* ---- Deep-Link: Pflegewohngemeinschaften-Panel öffnen ---- */
+  function openPanelByHash() {
+    var hash = (location.hash || "").replace(/^#/, "");
+    if (!hash) return;
+    var panel = document.getElementById(hash);
+    if (!panel || !panel.classList.contains("acc-panel")) return;
+    var trigger = panel.querySelector(".acc-panel__trigger");
+    if (!trigger) return;
+    accPanels.forEach(function (p) {
+      p.classList.remove("is-open");
+      var t = p.querySelector(".acc-panel__trigger");
+      if (t) t.setAttribute("aria-expanded", "false");
+    });
+    panel.classList.add("is-open");
+    trigger.setAttribute("aria-expanded", "true");
+  }
+  openPanelByHash();
+  window.addEventListener("hashchange", openPanelByHash);
 
   /* ---- FAQ accordion ---- */
   var faqItems = document.querySelectorAll(".faq__item");
