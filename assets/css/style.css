@@ -825,6 +825,7 @@ a.hero__card { text-decoration: none; color: inherit; }
   margin-bottom: 22px;
 }
 .acc-panel__link { pointer-events: none; }
+.acc-panel.is-open .acc-panel__link[data-href] { pointer-events: auto; cursor: pointer; }
 
 /* =========================================================
    RELATIVES – Process Cards
@@ -1165,7 +1166,7 @@ a.hero__card { text-decoration: none; color: inherit; }
 /* =========================================================
    TESTIMONIALS – Bild + Slider
 ========================================================== */
-.testimonials { padding: 100px 0; background: var(--white); }
+.testimonials { padding: 100px 0; background: var(--off-white); }
 .testimonials__wrap {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 72px; align-items: center;
@@ -2233,6 +2234,12 @@ html.a11y-contrast img {
 .service-block--alt {
   background: var(--off-white);
 }
+.service-block--white {
+  background: var(--white);
+}
+.testimonials--soft {
+  background: var(--off-white);
+}
 .service-block__grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -2435,6 +2442,100 @@ html.a11y-contrast img {
   font-weight: 500;
 }
 
+.pillar-grid--five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+}
+.spot-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.spot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-sm);
+}
+.spot-card__media {
+  overflow: hidden;
+}
+.spot-card__media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+.spot-card:hover .spot-card__media img {
+  transform: scale(1.04);
+}
+.spot-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 28px 28px 32px;
+}
+.spot-card__tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.spot-card__body h3 {
+  font-size: clamp(22px, 2.4vw, 26px);
+  font-weight: 400;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.spot-card__body > p {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.spot-card__facts {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.spot-card__facts li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.spot-card__facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+.spot-card__body .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
 .related-band {
   padding: 72px 0;
   background: var(--bg);
@@ -2469,6 +2570,12 @@ html.a11y-contrast img {
   object-fit: cover;
 }
 
+@media (max-width: 1100px) {
+  .pillar-grid--five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 960px) {
   .page-hero-shell + main .service-block:first-of-type {
     padding-top: 80px;
@@ -2478,7 +2585,9 @@ html.a11y-contrast img {
   .service-block__grid--flip { grid-template-columns: 1fr; gap: 32px; }
   .service-block__grid--flip .service-block__media,
   .service-block__grid--flip .service-block__text { order: initial; }
-  .pillar-grid { grid-template-columns: 1fr; }
+  .pillar-grid,
+  .pillar-grid--five { grid-template-columns: 1fr; }
+  .spot-grid { grid-template-columns: 1fr; gap: 22px; }
   .related-card { grid-template-columns: 1fr; }
   .related-card__text { padding: 32px 28px; }
   .page-hero__body { padding: 120px 0 140px; }

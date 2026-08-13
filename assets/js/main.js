@@ -121,7 +121,17 @@
       panel.classList.add("is-open");
       trigger.setAttribute("aria-expanded", "true");
     }
-    trigger.addEventListener("click", activate);
+    trigger.addEventListener("click", function (e) {
+      var navTarget = e.target.closest("[data-href]");
+      if (navTarget && panel.classList.contains("is-open")) {
+        var href = navTarget.getAttribute("data-href");
+        if (href) {
+          window.location.href = href;
+          return;
+        }
+      }
+      activate();
+    });
     trigger.addEventListener("mouseenter", activate);
     trigger.addEventListener("focus", activate);
   });
@@ -170,7 +180,7 @@
   }
 
   /* ---- Active nav link via scroll spy (nur Anker auf derselben Seite) ---- */
-  var sections = ["pflegewohngemeinschaften", "team", "karriere", "faq", "kontakt"]
+  var sections = ["team", "karriere", "faq", "kontakt"]
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   var navLinks = document.querySelectorAll(".nav__link");
