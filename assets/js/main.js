@@ -386,6 +386,76 @@
     });
   }
 
+  /* ---- Kontaktformular (mailto-Übergabe) ---- */
+  var contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    var statusEl = document.getElementById("contactFormStatus");
+
+    function setFieldInvalid(el, invalid) {
+      if (!el) return;
+      el.classList.toggle("is-invalid", !!invalid);
+    }
+
+    function showStatus(type, message) {
+      if (!statusEl) return;
+      statusEl.hidden = false;
+      statusEl.className = "contact-form__status is-" + type;
+      statusEl.textContent = message;
+    }
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var first = document.getElementById("contactFirst");
+      var last = document.getElementById("contactLast");
+      var email = document.getElementById("contactEmail");
+      var phone = document.getElementById("contactPhone");
+      var topic = document.getElementById("contactTopic");
+      var message = document.getElementById("contactMessage");
+      var privacy = document.getElementById("contactPrivacy");
+
+      var firstVal = (first && first.value || "").trim();
+      var lastVal = (last && last.value || "").trim();
+      var emailVal = (email && email.value || "").trim();
+      var phoneVal = (phone && phone.value || "").trim();
+      var topicVal = (topic && topic.value || "Allgemeine Beratung").trim();
+      var messageVal = (message && message.value || "").trim();
+      var privacyOk = privacy && privacy.checked;
+
+      setFieldInvalid(first, !firstVal);
+      setFieldInvalid(last, !lastVal);
+      setFieldInvalid(email, !emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal));
+      setFieldInvalid(message, !messageVal);
+      setFieldInvalid(privacy, !privacyOk);
+
+      if (!firstVal || !lastVal || !emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal) || !messageVal || !privacyOk) {
+        showStatus("error", "Bitte füllen Sie alle Pflichtfelder aus und bestätigen Sie den Datenschutzhinweis.");
+        return;
+      }
+
+      var body = [
+        "Anliegen: " + topicVal,
+        "Name: " + firstVal + " " + lastVal,
+        "E-Mail: " + emailVal,
+        "Telefon: " + (phoneVal || "–"),
+        "",
+        "Nachricht:",
+        messageVal
+      ].join("\n");
+
+      var mailto =
+        "mailto:info@bs-pflege-ka.de" +
+        "?subject=" + encodeURIComponent("Kontaktanfrage: " + topicVal) +
+        "&body=" + encodeURIComponent(body);
+
+      showStatus(
+        "success",
+        "Vielen Dank. Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Senden Sie sie dort ab – wir melden uns zeitnah."
+      );
+      window.location.href = mailto;
+    });
+  }
+
   /* ---- Footer year ---- */
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
