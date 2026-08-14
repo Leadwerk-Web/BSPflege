@@ -456,6 +456,33 @@
     });
   }
 
+  /* ---- Nach oben ---------- */
+  (function initBackToTop() {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "back-to-top";
+    btn.setAttribute("aria-label", "Nach oben scrollen");
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    document.body.appendChild(btn);
+
+    var visible = false;
+    function update() {
+      var show = window.scrollY > 420;
+      if (show === visible) return;
+      visible = show;
+      btn.classList.toggle("is-visible", show);
+    }
+
+    btn.addEventListener("click", function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  })();
+
   /* ---- Footer year ---- */
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();

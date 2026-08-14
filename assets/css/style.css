@@ -1600,6 +1600,63 @@ a.hero__card { text-decoration: none; color: inherit; }
 }
 .mobile-call svg { width: 20px; height: 20px; fill: #fff; }
 
+/* ---------- Back to top ---------- */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 175;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(145deg, var(--primary-dark) 0%, var(--primary) 100%);
+  box-shadow: 0 10px 28px rgba(61, 106, 122, 0.36);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s, box-shadow .25s, background .25s;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: linear-gradient(145deg, var(--primary) 0%, var(--accent-1) 100%);
+  box-shadow: 0 14px 32px rgba(61, 106, 122, 0.45);
+  outline: none;
+}
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+html.a11y-reduced-motion .back-to-top,
+html.a11y-reduced-motion .back-to-top.is-visible {
+  transition: none;
+  transform: none;
+}
+html.a11y-contrast .back-to-top {
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000;
+}
+html.a11y-contrast .back-to-top svg {
+  stroke: #000 !important;
+}
+
 /* ---------- Barrierefreiheit Sidebar ---------- */
 .a11y {
   position: fixed;
@@ -2056,6 +2113,10 @@ html.a11y-contrast img {
 
   .mobile-call { display: flex; }
   body.has-mobile-call { padding-bottom: 88px; }
+  .back-to-top {
+    right: 20px;
+    bottom: 96px;
+  }
   .a11y { top: auto; bottom: 100px; transform: none; }
   .a11y__panel { top: auto; bottom: 0; transform: none; max-height: min(70vh, 520px); overflow-y: auto; }
   .a11y__panel:not([hidden]) {
