@@ -3563,3 +3563,82 @@ html.a11y-contrast img {
   .contact-form__actions { flex-direction: column; align-items: flex-start; }
 }
 
+
+
+/* ---- Ergänzungen 29.09.2026: Standorte, WG-Check, Entscheidungskarten ---- */
+.wg-standorte { margin-top: 8px; }
+.wg-standorte .person__avatar { font-size: 20px; }
+.wg-standorte__cta { text-align: center; margin-top: 40px; }
+.wg-standorte__cta p { color: var(--ink-soft); font-size: 16px; margin: 0 0 18px; }
+
+.wg-check {
+  max-width: 780px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  padding: 34px 30px;
+  display: grid;
+  gap: 20px;
+}
+.wg-check__q {
+  border: 0;
+  margin: 0;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.wg-check__q legend {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  padding: 0;
+}
+.wg-check__opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.wg-check__opts label { position: relative; cursor: pointer; }
+.wg-check__opts input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.wg-check__opts span {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(80, 131, 150, 0.28);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.wg-check__opts input:checked + span { background: var(--primary); border-color: var(--primary); color: #fff; }
+.wg-check__opts input:focus-visible + span { outline: 2px solid var(--primary-dark); outline-offset: 2px; }
+.wg-check__q.is-missing legend { color: var(--accent-2-dark); }
+.wg-check__result {
+  background: linear-gradient(145deg, var(--primary-soft), #fff);
+  border: 1px solid rgba(80, 131, 150, 0.16);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+}
+.wg-check__result strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+.wg-check__result p { color: var(--ink-soft); margin: 0 0 18px; line-height: 1.7; }
+.wg-check__result.is-error { background: var(--accent-2-soft); border-color: rgba(224, 110, 88, 0.25); }
+.wg-check__result.is-error p { margin: 0; color: var(--ink); }
+
+.faq-decide__solution {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  margin-top: 2px;
+}
+@media (max-width: 640px) {
+  .wg-check { padding: 26px 20px; }
+}

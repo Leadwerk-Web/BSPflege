@@ -487,3 +487,110 @@
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 })();
+
+
+/* ---- Ergänzungen 29.09.2026 ---- */
+(function () {
+  "use strict";
+
+  /* Bewerbungsformular Stellenanzeigen. In WordPress ersetzt WPForms dieses Formular (data-lw-wpforms="application");
+     in der statischen Vorschau öffnet sich das Mailprogramm. */
+  var form = document.getElementById("bewerbungForm");
+  if (form) {
+    var status = document.getElementById("bewerbungFormStatus");
+    var auswahl = document.getElementById("bewStelle");
+    var zeige = function (typ, text) {
+      if (!status) return;
+      status.hidden = false;
+      status.className = "contact-form__status is-" + typ;
+      status.textContent = text;
+    };
+    var markiere = function (el, falsch) { if (el) el.classList.toggle("is-invalid", !!falsch); };
+    Array.prototype.forEach.call(document.querySelectorAll("[data-bewerbung-stelle]"), function (a) {
+      a.addEventListener("click", function () {
+        if (auswahl) auswahl.value = a.getAttribute("data-bewerbung-stelle");
+      });
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var feld = function (id) { var el = document.getElementById(id); return { el: el, wert: ((el && el.value) || "").trim() }; };
+      var vor = feld("bewFirst"), nach = feld("bewLast"), mail = feld("bewEmail"), tel = feld("bewPhone"), text = feld("bewMessage");
+      var ds = document.getElementById("bewPrivacy");
+      var mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.wert);
+      markiere(vor.el, !vor.wert);
+      markiere(nach.el, !nach.wert);
+      markiere(mail.el, !mailOk);
+      markiere(tel.el, !tel.wert);
+      markiere(ds, !(ds && ds.checked));
+      if (!vor.wert || !nach.wert || !mailOk || !tel.wert || !(ds && ds.checked)) {
+        zeige("error", "Bitte fülle alle Pflichtfelder aus und bestätige den Datenschutzhinweis.");
+        return;
+      }
+      var stelle = auswahl ? auswahl.options[auswahl.selectedIndex].text : "Bewerbung";
+      var inhalt = [
+        "Stelle: " + stelle,
+        "Name: " + vor.wert + " " + nach.wert,
+        "E-Mail: " + mail.wert,
+        "Telefon: " + tel.wert,
+        "",
+        "Nachricht:",
+        text.wert,
+        "",
+        "Lebenslauf: bitte an diese Mail anhängen."
+      ].join("\n");
+      zeige("success", "Dein E-Mail-Programm öffnet sich mit Deiner Bewerbung. Bitte häng dort noch Deinen Lebenslauf an.");
+      window.location.href = "mailto:info@bs-pflege-ka.de?subject=" + encodeURIComponent("Bewerbung: " + stelle) +
+        "&body=" + encodeURIComponent(inhalt);
+    });
+  }
+
+  /* WG-Check auf der Seite Pflegewohngemeinschaften: fünf Fragen, eine erste Orientierung. */
+  var check = document.getElementById("wgCheck");
+  if (check) {
+    var ausgabe = document.getElementById("wgCheckResult");
+    var pfeil = '<span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
+    var antwort = function (name) {
+      var r = check.querySelector('input[name="' + name + '"]:checked');
+      return r ? r.value : "";
+    };
+    check.addEventListener("change", function (e) {
+      var fs = e.target && e.target.closest ? e.target.closest(".wg-check__q") : null;
+      if (fs) fs.classList.remove("is-missing");
+    });
+    check.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var a = { q1: antwort("q1"), q2: antwort("q2"), q3: antwort("q3"), q4: antwort("q4"), q5: antwort("q5") };
+      var fehlt = false;
+      ["q1", "q2", "q3", "q4", "q5"].forEach(function (q) {
+        var fs = check.querySelector('input[name="' + q + '"]').closest(".wg-check__q");
+        if (!a[q]) { fehlt = true; if (fs) fs.classList.add("is-missing"); }
+      });
+      ausgabe.hidden = false;
+      if (fehlt) {
+        ausgabe.className = "wg-check__result is-error";
+        ausgabe.innerHTML = "<p>Bitte beantworten Sie alle fünf Fragen.</p>";
+        return;
+      }
+      var titel, text, ziel, knopf;
+      if (a.q4 === "nein") {
+        titel = "Dann passt eher Unterstützung zu Hause.";
+        text = "Mobile Pflege, Hilfe im Haushalt und 24-Stunden-Pflege kommen zu Ihnen, in die vertraute Umgebung.";
+        ziel = "ambulante-leistungen.html";
+        knopf = "Zu den ambulanten Leistungen";
+      } else if (a.q1 === "ja" && (a.q2 === "ja" || a.q3 === "ja")) {
+        titel = "Eine Pflege-WG kann gut zu Ihnen passen.";
+        text = "Kleine Gemeinschaft, Präsenz rund um die Uhr und Pflege aus einer Hand. Am besten schauen Sie sich eine unserer Wohngemeinschaften einmal an.";
+        ziel = "#aufnahme";
+        knopf = "Besichtigung anfragen";
+      } else {
+        titel = "Lassen Sie uns gemeinsam schauen.";
+        text = "Ihre Antworten ergeben noch kein eindeutiges Bild. In einem kurzen Gespräch finden wir heraus, welche Unterstützung wirklich passt.";
+        ziel = "kontakt.html";
+        knopf = "Beratung anfragen";
+      }
+      if (a.q5 !== "ja") text += " Beim Antrag auf einen Pflegegrad helfen wir Ihnen gern.";
+      ausgabe.className = "wg-check__result";
+      ausgabe.innerHTML = "<strong>" + titel + "</strong><p>" + text + '</p><a class="btn btn--primary" href="' + ziel + '">' + knopf + " " + pfeil + "</a>";
+    });
+  }
+})();

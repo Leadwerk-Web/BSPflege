@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/style.css?v=20260814b" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260929a" />
   <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
   <script>
   (function () {
@@ -243,7 +243,7 @@
           Stellen entdecken
           <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a href="mailto:info@bs-pflege-ka.de?subject=Bewerbung%20BS%20Pflege" class="btn btn--outline-light btn--lg">
+        <a href="#bewerbung" class="btn btn--outline-light btn--lg">
           Jetzt bewerben
           <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
@@ -408,7 +408,7 @@
                 Wertschätzung im Alltag – ausgezeichnet als Top-Arbeitgeber
               </li>
             </ul>
-            <a href="mailto:info@bs-pflege-ka.de?subject=Bewerbung%20Pflegefachkraft" class="btn btn--primary btn--lg">
+            <a href="#bewerbung" data-bewerbung-stelle="pflegefachkraft" class="btn btn--primary btn--lg">
               Als Pflegefachkraft bewerben
               <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
@@ -464,7 +464,7 @@
                 Für uns zählt das Herz für die Menschen
               </li>
             </ul>
-            <a href="mailto:info@bs-pflege-ka.de?subject=Bewerbung%20Pr%C3%A4senzkraft" class="btn btn--primary btn--lg">
+            <a href="#bewerbung" data-bewerbung-stelle="praesenzkraft" class="btn btn--primary btn--lg">
               Als Präsenzkraft bewerben
               <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
@@ -507,7 +507,7 @@
               </li>
             </ul>
             <div class="contact__actions contact__actions--inline">
-              <a href="mailto:info@bs-pflege-ka.de?subject=Initiativbewerbung%20BS%20Pflege" class="btn btn--primary btn--lg">
+              <a href="#bewerbung" data-bewerbung-stelle="initiativ" class="btn btn--primary btn--lg">
                 Initiativ bewerben
                 <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
               </a>
@@ -522,6 +522,103 @@
     </section>
 
     <!-- FAQ -->
+    <section class="service-block service-block--alt" id="bewerbung">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-label">Online bewerben</span>
+          <h2>Ein Lebenslauf <span class="headline-serif">genügt.</span></h2>
+          <p class="section-head__sub">Schick uns Deine Bewerbung in zwei Minuten. Wir melden uns innerhalb weniger Tage und laden Dich zu einem Kennenlerngespräch ein.</p>
+        </header>
+
+        <div class="contact-form__wrap reveal">
+          <form class="contact-form" id="bewerbungForm" data-lw-wpforms="application" action="kontakt.html" method="post" enctype="multipart/form-data" novalidate>
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="bewFirst">Vorname <span aria-hidden="true">*</span></label>
+                <input id="bewFirst" name="first_name" type="text" autocomplete="given-name" required placeholder="Dein Vorname" />
+              </div>
+              <div class="contact-form__field">
+                <label for="bewLast">Nachname <span aria-hidden="true">*</span></label>
+                <input id="bewLast" name="last_name" type="text" autocomplete="family-name" required placeholder="Dein Nachname" />
+              </div>
+            </div>
+
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="bewEmail">E-Mail-Adresse <span aria-hidden="true">*</span></label>
+                <input id="bewEmail" name="email" type="email" autocomplete="email" required placeholder="name@beispiel.de" />
+              </div>
+              <div class="contact-form__field">
+                <label for="bewPhone">Telefonnummer <span aria-hidden="true">*</span></label>
+                <input id="bewPhone" name="phone" type="tel" autocomplete="tel" required placeholder="+49 …" />
+              </div>
+            </div>
+
+            <div class="contact-form__field">
+              <label for="bewStelle">Gewünschte Stelle</label>
+              <select id="bewStelle" name="position">
+                <option value="pflegefachkraft">Pflegefachkraft (m/w/d)</option>
+                <option value="praesenzkraft">Präsenzkraft / Hauswirtschaft (m/w/d)</option>
+                <option value="initiativ">Initiativbewerbung</option>
+              </select>
+            </div>
+
+            <div class="contact-form__field">
+              <label for="bewCv">Lebenslauf (PDF, DOC oder DOCX)</label>
+              <input id="bewCv" name="cv" type="file" accept=".pdf,.doc,.docx" />
+            </div>
+
+            <div class="contact-form__field">
+              <label for="bewMessage">Nachricht</label>
+              <textarea id="bewMessage" name="message" rows="5" placeholder="Was sollen wir über Dich wissen?"></textarea>
+            </div>
+
+            <label class="contact-form__check">
+              <input type="checkbox" id="bewPrivacy" name="consent" value="accepted" required />
+              <span>
+                Ich habe die
+                <a href="https://www.bs-pflege-ka.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>
+                zur Kenntnis genommen und willige in die Verarbeitung meiner Angaben zur Bearbeitung der Bewerbung ein.
+                <span aria-hidden="true">*</span>
+              </span>
+            </label>
+
+            <div class="contact-form__actions">
+              <button type="submit" class="btn btn--primary btn--lg">
+                Bewerbung absenden
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </button>
+              <p class="contact-form__hint">Pflichtfelder sind mit * gekennzeichnet.</p>
+            </div>
+
+            <div class="contact-form__status" id="bewerbungFormStatus" role="status" aria-live="polite" hidden></div>
+          </form>
+
+          <aside class="contact-side" aria-label="Direkt erreichen">
+            <div class="contact-side__panel">
+              <span class="section-label">Direkt erreichen</span>
+              <h3>Lieber persönlich?</h3>
+              <p>Ruf uns an oder schreib uns eine kurze Mail. Wir freuen uns auf das Gespräch.</p>
+              <div class="contact-side__items">
+                <div class="contact-side__item">
+                  <strong>Telefon</strong>
+                  <a href="tel:+497218933330">+49 721 89 33 330</a>
+                </div>
+                <div class="contact-side__item">
+                  <strong>E-Mail</strong>
+                  <a href="mailto:info@bs-pflege-ka.de">info@bs-pflege-ka.de</a>
+                </div>
+              </div>
+              <a href="tel:+497218933330" class="btn btn--primary">
+                Jetzt anrufen
+                <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section class="faq" id="faq">
       <div class="container">
         <header class="section-head reveal">
@@ -691,7 +788,7 @@
               </div>
             </div>
             <div class="contact__actions">
-              <a href="mailto:info@bs-pflege-ka.de?subject=Bewerbung%20BS%20Pflege" class="btn btn--primary btn--lg">
+              <a href="#bewerbung" class="btn btn--primary btn--lg">
                 Bewerbung senden
                 <span class="btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
               </a>
@@ -804,6 +901,6 @@
     </div>
   </aside>
 
-  <script src="assets/js/main.js?v=20260814b" defer></script>
+  <script src="assets/js/main.js?v=20260929a" defer></script>
 </body>
 </html>
